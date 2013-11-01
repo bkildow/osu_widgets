@@ -1,4 +1,10 @@
 <?php
+/**
+ * @file
+ * Code for the OSU Widgets feature.
+ */
+
+include_once 'osu_widgets.features.inc';
 
 /**
  * Implementation of hook_entity_info_alter()
@@ -31,6 +37,8 @@ function osu_widgets_ds_field_theme_functions_info() {
 
 /**
  * Theme function to output the carousel.
+ * This specifically themes a field collection with the fields 
+ * osu_carousel_link and osu_carousel_image. 
  */
 function theme_ds_field_carousel($variables) {
   $output = '';
@@ -38,7 +46,19 @@ function theme_ds_field_carousel($variables) {
 
   // Render the items.
   foreach ($variables['items'] as $delta => $item) {
-    $output .= '<li>' . drupal_render($item) . '</li>';
+    $collection = reset($item['entity']['field_collection_item']);
+    $image = $collection['field_osu_carousel_image'];
+    $rendered_image = drupal_render($image);
+
+    // set url if it exists
+    $url = isset($collection['field_osu_carousel_link']) ? 
+      $collection['field_osu_carousel_link']['#items'][0]['url'] : 
+      false;
+
+    // if url is present, wrap image in link. Otherwise just show the image
+    $image_output = $url ? '<a href="'. $url .'">' . $rendered_image . '</a>' : $rendered_image;
+    
+    $output .= '<li>' . $image_output . '</li>';
   }
 
   $output .= '</ul>';
