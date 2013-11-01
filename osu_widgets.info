@@ -1,0 +1,4 @@
+name = OSU Widgets
+description = OSU Panels Widgets
+core = 7.x
+package = OSU
