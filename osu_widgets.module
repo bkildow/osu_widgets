@@ -19,3 +19,29 @@ function osu_widgets_entity_info_alter(&$entity_info) {
     ),
   );
 }
+
+/**
+ * Implements hook_ds_field_theme_functions_info().
+ */
+function osu_widgets_ds_field_theme_functions_info() {
+  return array(
+    'theme_ds_field_carousel' => t('Carousel'),
+  );
+}
+
+/**
+ * Theme function to output the carousel.
+ */
+function theme_ds_field_carousel($variables) {
+  $output = '';
+  $output .= '<ul>';
+
+  // Render the items.
+  foreach ($variables['items'] as $delta => $item) {
+    $output .= '<li>' . drupal_render($item) . '</li>';
+  }
+
+  $output .= '</ul>';
+  return $output;
+}
+
