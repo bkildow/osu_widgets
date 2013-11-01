@@ -1,4 +1,8 @@
 name = OSU Widgets
-description = OSU Panels Widgets
+description = OSU panels widgets 
 core = 7.x
 package = OSU
+version = 7.x-1.0
+project = osu_widgets
+dependencies[] = field_collection
+features[features_api][] = api:2
