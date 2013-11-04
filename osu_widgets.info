@@ -13,6 +13,7 @@ dependencies[] = field_collection
 dependencies[] = image
 dependencies[] = link
 dependencies[] = strongarm
+dependencies[] = libraries
 features[ctools][] = ds:ds:1
 features[ctools][] = strongarm:strongarm:1
 features[defaultconfig][] = ds_field_settings_info:fieldable_panels_pane|osu_carousel|default

@@ -27,6 +27,30 @@ function osu_widgets_entity_info_alter(&$entity_info) {
 }
 
 /**
+ * Implements hook_libraries_info().
+ */
+function osu_widgets_libraries_info() {
+  $libraries['bxslider'] = array(
+    'name' => 'bxSlider',
+    'vendor url' => 'http://bxslider.com',
+    'download url' => 'http://bxslider.com/lib/jquery.bxslider.zip',
+    'version' => '4',
+    'files' => array(
+      'js' => array('jquery.bxslider.min.js'),
+      'css' => array('jquery.bxslider.css'),
+    ),
+    'integration files' => array(
+      'osu_widgets' => array(
+        'js' => array('osu_widgets.carousel.js'),
+        'css' => array('osu_widgets.carousel.css'),
+      ),
+    ),
+  );
+
+  return $libraries;
+}
+
+/**
  * Implements hook_ds_field_theme_functions_info().
  */
 function osu_widgets_ds_field_theme_functions_info() {
@@ -37,12 +61,15 @@ function osu_widgets_ds_field_theme_functions_info() {
 
 /**
  * Theme function to output the carousel.
- * This specifically themes a field collection with the fields 
- * osu_carousel_link and osu_carousel_image. 
+ * This specifically themes a field collection with the fields
+ * osu_carousel_link and osu_carousel_image.
  */
 function theme_ds_field_carousel($variables) {
+
+  libraries_load('bxslider');
+
   $output = '';
-  $output .= '<ul>';
+  $output .= '<ul class="bxslider">';
 
   // Render the items.
   foreach ($variables['items'] as $delta => $item) {
@@ -51,13 +78,13 @@ function theme_ds_field_carousel($variables) {
     $rendered_image = drupal_render($image);
 
     // set url if it exists
-    $url = isset($collection['field_osu_carousel_link']) ? 
-      $collection['field_osu_carousel_link']['#items'][0]['url'] : 
-      false;
+    $url = isset($collection['field_osu_carousel_link']) ?
+      $collection['field_osu_carousel_link']['#items'][0]['url'] :
+      FALSE;
 
     // if url is present, wrap image in link. Otherwise just show the image
-    $image_output = $url ? '<a href="'. $url .'">' . $rendered_image . '</a>' : $rendered_image;
-    
+    $image_output = $url ? '<a href="' . $url . '">' . $rendered_image . '</a>' : $rendered_image;
+
     $output .= '<li>' . $image_output . '</li>';
   }
 
