@@ -24,6 +24,20 @@ function osu_widgets_entity_info_alter(&$entity_info) {
       'access arguments' => array('administer fieldable panels panes'),
     ),
   );
+
+  // Slideshow
+  $entity_info['fieldable_panels_pane']['bundles']['osu_slideshow'] = array(
+    'label' => t('Add slideshow'),
+    'pane category' => t('Custom'),
+    'pane top level' => TRUE,
+    'pane icon' => drupal_get_path('module', 'panopoly_widgets') . '/images/icon_link.png',
+    'admin' => array(
+      'path' => 'admin/structure/fieldable-panels-panes/manage/%fieldable_panels_panes_type',
+      'bundle argument' => 4,
+      'real path' => 'admin/structure/fieldable-panels-panes/manage/osu_slideshow',
+      'access arguments' => array('administer fieldable panels panes'),
+    ),
+  );
 }
 
 /**
@@ -41,8 +55,8 @@ function osu_widgets_libraries_info() {
     ),
     'integration files' => array(
       'osu_widgets' => array(
-        'js' => array('osu_widgets.carousel.js'),
-        'css' => array('osu_widgets.carousel.css'),
+        'js' => array('osu_widgets.js'),
+        'css' => array('osu_widgets.css'),
       ),
     ),
   );
@@ -56,7 +70,25 @@ function osu_widgets_libraries_info() {
 function osu_widgets_ds_field_theme_functions_info() {
   return array(
     'theme_ds_field_carousel' => t('Carousel'),
+    'theme_ds_field_slideshow' => t('Slideshow'),
   );
+}
+
+function theme_ds_field_slideshow($variables) {
+
+  libraries_load('bxslider');
+
+  $output = '';
+  $output .= '<ul class="bxslideshow">';
+
+  foreach ($variables['items'] as $delta => $item) {
+    $rendered_item = drupal_render($item);
+    $output .= '<li>' . $rendered_item . '</li>';
+  }
+
+  $output .= '</ul>';
+
+  return $output;
 }
 
 /**
@@ -69,7 +101,7 @@ function theme_ds_field_carousel($variables) {
   libraries_load('bxslider');
 
   $output = '';
-  $output .= '<ul class="bxslider">';
+  $output .= '<ul class="bxcarousel">';
 
   // Render the items.
   foreach ($variables['items'] as $delta => $item) {
