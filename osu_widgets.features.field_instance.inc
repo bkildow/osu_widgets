@@ -156,11 +156,51 @@ function osu_widgets_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'fieldable_panels_pane-osu_slideshow-field_osu_slideshow_content'
+  $field_instances['fieldable_panels_pane-osu_slideshow-field_osu_slideshow_content'] = array(
+    'bundle' => 'osu_slideshow',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'links' => 1,
+          'view_mode' => 'featured',
+        ),
+        'type' => 'entityreference_entity_view',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_osu_slideshow_content',
+    'label' => 'Slideshow content',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => -4,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Carousel Image');
   t('Carousel Images');
   t('Link');
+  t('Slideshow content');
 
   return $field_instances;
 }
