@@ -6,9 +6,10 @@
 			  minSlides: 2,
 			  maxSlides: 5,
 			  moveSlides: 1,
-			  slideWidth: 250,
-			  slideMargin: 10,
-			  captions: true
+			  slideWidth: 175,
+			  slideMargin: 36,
+			  captions: true,
+			  pager: false
 			});
 		});
 	  }
