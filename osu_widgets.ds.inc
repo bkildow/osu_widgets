@@ -21,11 +21,13 @@ function osu_widgets_ds_layout_settings_info() {
     'regions' => array(
       'ds_content' => array(
         0 => 'field_osu_carousel_image',
-        1 => 'field_osu_carousel_link',
+        1 => 'field_osu_carousel_title',
+        2 => 'field_osu_carousel_link',
       ),
     ),
     'fields' => array(
       'field_osu_carousel_image' => 'ds_content',
+      'field_osu_carousel_title' => 'ds_content',
       'field_osu_carousel_link' => 'ds_content',
     ),
     'classes' => array(),
