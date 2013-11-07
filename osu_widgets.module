@@ -107,17 +107,22 @@ function theme_ds_field_carousel($variables) {
   foreach ($variables['items'] as $delta => $item) {
     $collection = reset($item['entity']['field_collection_item']);
     $image = $collection['field_osu_carousel_image'];
+    $title = $collection['field_osu_carousel_title'];
     $rendered_image = drupal_render($image);
+    $rendered_title = drupal_render($title);
 
     // set url if it exists
     $url = isset($collection['field_osu_carousel_link']) ?
       $collection['field_osu_carousel_link']['#items'][0]['url'] :
       FALSE;
 
-    // if url is present, wrap image in link. Otherwise just show the image
-    $image_output = $url ? '<a href="' . $url . '">' . $rendered_image . '</a>' : $rendered_image;
+    $image_and_title_output = $rendered_image . '<p>' . $rendered_title . '</p>';
 
-    $output .= '<li>' . $image_output . '</li>';
+    if($url) {
+      $image_and_title_output = '<a href="' . $url . '">' . $image_and_title_output . '</a>';
+    }
+
+    $output .= '<li>' . $image_and_title_output . '</li>';
   }
 
   $output .= '</ul>';
