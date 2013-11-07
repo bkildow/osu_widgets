@@ -71,7 +71,23 @@ function osu_widgets_ds_field_theme_functions_info() {
   return array(
     'theme_ds_field_carousel' => t('Carousel'),
     'theme_ds_field_slideshow' => t('Slideshow'),
+    'theme_ds_field_slideshow_image' => t('Slideshow Image'),
   );
+}
+
+function theme_ds_field_slideshow_image($variables) {
+
+  $output = '';
+  $output .= '<div class="slideshow-image-wrapper">';
+
+  foreach ($variables['items'] as $delta => $item) {
+    $output .= drupal_render($item);
+  }
+
+  $output .= '<div class="slideshow-image-controls"></div>';
+  $output .= '</div>';
+
+  return $output;
 }
 
 function theme_ds_field_slideshow($variables) {
