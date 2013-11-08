@@ -20,7 +20,9 @@
 	  	$('.bxslideshow', context).once('bxslideshow', function() {
 		  	$(this).bxSlider({
 				auto: true,
-  				autoControls: true
+				controls: false,
+				mode: 'fade',
+				pause: 5000
 			});
 		});
 	  }

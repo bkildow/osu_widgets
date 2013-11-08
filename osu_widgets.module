@@ -84,7 +84,7 @@ function theme_ds_field_slideshow_image($variables) {
     $output .= drupal_render($item);
   }
 
-  $output .= '<div class="slideshow-image-controls"></div>';
+  $output .= '<div class="slideshow-image-bottom"></div>';
   $output .= '</div>';
 
   return $output;
