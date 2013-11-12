@@ -94,7 +94,7 @@ function theme_ds_field_slideshow($variables) {
 
   libraries_load('bxslider');
 
-  $output = '';
+  $output = '<div class="slideshow-widget">';
   $output .= '<ul class="bxslideshow">';
 
   foreach ($variables['items'] as $delta => $item) {
@@ -103,6 +103,7 @@ function theme_ds_field_slideshow($variables) {
   }
 
   $output .= '</ul>';
+  $output .= '</div>';
 
   return $output;
 }
@@ -116,7 +117,7 @@ function theme_ds_field_carousel($variables) {
 
   libraries_load('bxslider');
 
-  $output = '';
+  $output = '<div class="carousel-widget">';
   $output .= '<ul class="bxcarousel">';
 
   // Render the items.
@@ -142,6 +143,7 @@ function theme_ds_field_carousel($variables) {
   }
 
   $output .= '</ul>';
+  $output .= '</div>';
   return $output;
 }
 
