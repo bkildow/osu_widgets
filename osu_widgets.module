@@ -7,11 +7,11 @@
 include_once 'osu_widgets.features.inc';
 
 /**
- * Implementation of hook_entity_info_alter()
+ * Implements hook_entity_info_alter().
  */
 function osu_widgets_entity_info_alter(&$entity_info) {
 
-  // Carousel
+  // Carousel.
   $entity_info['fieldable_panels_pane']['bundles']['osu_carousel'] = array(
     'label' => t('Add carousel'),
     'pane category' => t('Custom'),
@@ -25,7 +25,7 @@ function osu_widgets_entity_info_alter(&$entity_info) {
     ),
   );
 
-  // Slideshow
+  // Slideshow.
   $entity_info['fieldable_panels_pane']['bundles']['osu_slideshow'] = array(
     'label' => t('Add slideshow'),
     'pane category' => t('Custom'),
@@ -75,6 +75,15 @@ function osu_widgets_ds_field_theme_functions_info() {
   );
 }
 
+/**
+ * Theme callback function.
+ *
+ * @param array $variables
+ *   variables array
+ *
+ * @return string
+ *   html to be displayed
+ */
 function theme_ds_field_slideshow_image($variables) {
 
   $output = '';
@@ -90,6 +99,15 @@ function theme_ds_field_slideshow_image($variables) {
   return $output;
 }
 
+/**
+ * Theme callback function.
+ *
+ * @param array $variables
+ *   variables array
+ *
+ * @return string
+ *   html to be displayed
+ */
 function theme_ds_field_slideshow($variables) {
 
   libraries_load('bxslider');
@@ -116,8 +134,9 @@ function theme_ds_field_slideshow($variables) {
 }
 
 /**
- * Appends the callout links to the "lean more" node link at the bottom of the
- * teaser. Returns if link1 is empty.
+ * Appends the callout links to the "lean more" node link.
+ *
+ * Returns if link1 is empty.
  *
  * @param array $item
  *   render array containing a node
@@ -137,6 +156,8 @@ function osu_widgets_attach_callout_links(&$item, $link1, $link2) {
 }
 
 /**
+ * Creates a link from a link render array and adds an icon class if provided.
+ *
  * @param array $link
  *   render array for a link field
  * @param array $icon
@@ -146,7 +167,7 @@ function osu_widgets_attach_callout_links(&$item, $link1, $link2) {
  *   returns html for the callout link
  */
 function osu_widgets_get_callout_link($link, $icon) {
-  if(empty($link)) {
+  if (empty($link)) {
     return '';
   }
 
@@ -158,10 +179,10 @@ function osu_widgets_get_callout_link($link, $icon) {
 
   if (!empty($icon_class)) {
     $options = array(
-      'html' => true,
+      'html' => TRUE,
     );
 
-    $title = '<i class="'.$icon_class.'"></i> '.$title;
+    $title = '<i class="' . $icon_class . '"></i> ' . $title;
   }
 
   return l($title, $url, $options);
@@ -169,6 +190,7 @@ function osu_widgets_get_callout_link($link, $icon) {
 
 /**
  * Theme function to output the carousel.
+ *
  * This specifically themes a field collection with the fields
  * osu_carousel_link and osu_carousel_image.
  */
@@ -187,7 +209,7 @@ function theme_ds_field_carousel($variables) {
     $rendered_image = drupal_render($image);
     $rendered_title = drupal_render($title);
 
-    // set url if it exists
+    // Set url if it exists.
     $url = isset($collection['field_osu_carousel_link']) ?
       $collection['field_osu_carousel_link']['#items'][0]['url'] :
       FALSE;
@@ -205,4 +227,3 @@ function theme_ds_field_carousel($variables) {
   $output .= '</div>';
   return $output;
 }
-
