@@ -94,10 +94,17 @@ function theme_ds_field_slideshow($variables) {
 
   libraries_load('bxslider');
 
+  $obj = $variables['element']['#object'];
+
+  $link1 = osu_widgets_get_callout_link($obj->field_osu_callout_link_1, $obj->field_osu_callout_icon_1);
+  $link2 = osu_widgets_get_callout_link($obj->field_osu_callout_link_2, $obj->field_osu_callout_icon_2);
+
   $output = '<div class="slideshow-widget">';
   $output .= '<ul class="bxslideshow">';
 
   foreach ($variables['items'] as $delta => $item) {
+    osu_widgets_attach_callout_links($item, $link1, $link2);
+
     $rendered_item = drupal_render($item);
     $output .= '<li>' . $rendered_item . '</li>';
   }
@@ -106,6 +113,58 @@ function theme_ds_field_slideshow($variables) {
   $output .= '</div>';
 
   return $output;
+}
+
+/**
+ * Appends the callout links to the "lean more" node link at the bottom of the
+ * teaser. Returns if link1 is empty.
+ *
+ * @param array $item
+ *   render array containing a node
+ * @param string $link1
+ *   first link to attach
+ * @param string $link2
+ *   second link to attach
+ */
+function osu_widgets_attach_callout_links(&$item, $link1, $link2) {
+  if (empty($link1)) {
+    return;
+  }
+
+  reset($item['node']);
+  $key = key($item['node']);
+  $item['node'][$key]['node_link'][0]['#markup'] .= '<div class="slideshow-callout">' . $link1 . $link2 . '</div>';
+}
+
+/**
+ * @param array $link
+ *   render array for a link field
+ * @param array $icon
+ *   render array for a text field containing the string of the class name
+ *
+ * @return string
+ *   returns html for the callout link
+ */
+function osu_widgets_get_callout_link($link, $icon) {
+  if(empty($link)) {
+    return '';
+  }
+
+  $url = $link[LANGUAGE_NONE][0]['url'];
+  $title = $link[LANGUAGE_NONE][0]['title'];
+  $icon_class = $icon[LANGUAGE_NONE][0]['value'];
+
+  $options = array();
+
+  if (!empty($icon_class)) {
+    $options = array(
+      'html' => true,
+    );
+
+    $title = '<i class="'.$icon_class.'"></i> '.$title;
+  }
+
+  return l($title, $url, $options);
 }
 
 /**
@@ -135,7 +194,7 @@ function theme_ds_field_carousel($variables) {
 
     $image_and_title_output = $rendered_image . '<p>' . $rendered_title . '</p>';
 
-    if($url) {
+    if ($url) {
       $image_and_title_output = '<a href="' . $url . '">' . $image_and_title_output . '</a>';
     }
 
