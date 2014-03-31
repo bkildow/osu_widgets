@@ -171,7 +171,7 @@ function osu_widgets_get_callout_link($link, $icon) {
     return '';
   }
 
-  $url = isset($link[LANGUAGE_NONE][0]['url']) ? isset($link[LANGUAGE_NONE][0]['url']) : '';
+  $url = isset($link[LANGUAGE_NONE][0]['url']) ? $link[LANGUAGE_NONE][0]['url'] : '';
   $title = isset($link[LANGUAGE_NONE][0]['title']) ? $link[LANGUAGE_NONE][0]['title'] : '';
   $icon_class = isset($icon[LANGUAGE_NONE][0]['value']) ? $icon[LANGUAGE_NONE][0]['value'] : '';
 
