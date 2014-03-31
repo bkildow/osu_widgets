@@ -63,12 +63,12 @@ function osu_widgets_field_default_field_instances() {
         'manualcrop_inline_crop' => 1,
         'manualcrop_instant_crop' => 1,
         'manualcrop_instant_preview' => 1,
+        'manualcrop_keyboard' => TRUE,
+        'manualcrop_maximize_default_crop_area' => FALSE,
         'manualcrop_require_cropping' => array(
-          'osu_crop_1x1' => 0,
           'osu_crop_4x3' => 'osu_crop_4x3',
         ),
         'manualcrop_styles_list' => array(
-          'osu_crop_1x1' => 0,
           'osu_crop_4x3' => 'osu_crop_4x3',
         ),
         'manualcrop_styles_mode' => 'include',
