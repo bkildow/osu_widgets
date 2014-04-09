@@ -7,6 +7,31 @@
 include_once 'osu_widgets.features.inc';
 
 /**
+ * Implements hook_css_alter().
+ *
+ * Removes panopoly's widget css.
+ */
+function osu_widgets_css_alter(&$css) {
+  $path = drupal_get_path('module', 'panopoly_widgets');
+
+  // We use our own version of panopoly widgets css.
+  unset($css[$path . '/panopoly-widgets.css']);
+}
+
+/**
+ * Implements hook_init().
+ */
+function osu_widgets_init() {
+
+  // Add our override for panopoly widgets without the responsive table stuff.
+  $path = drupal_get_path('module', 'osu_widgets');
+  drupal_add_css($path . '/osu_widgets_panopoly_override.css', array(
+    'group' => CSS_DEFAULT,
+    'every_page' => TRUE,
+  ));
+}
+
+/**
  * Implements hook_entity_info_alter().
  */
 function osu_widgets_entity_info_alter(&$entity_info) {
