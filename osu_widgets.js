@@ -22,7 +22,7 @@
 				auto: true,
 				controls: false,
 				mode: 'fade',
-				pause: 5000
+				pause: 7000
 			});
 		});
 	  }
