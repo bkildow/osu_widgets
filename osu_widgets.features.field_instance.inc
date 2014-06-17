@@ -57,14 +57,14 @@ function osu_widgets_field_default_field_instances() {
       'active' => 1,
       'module' => 'image',
       'settings' => array(
-        'manualcrop_crop_info' => 1,
+        'manualcrop_crop_info' => 0,
         'manualcrop_default_crop_area' => 1,
         'manualcrop_enable' => 1,
         'manualcrop_inline_crop' => 1,
         'manualcrop_instant_crop' => 1,
-        'manualcrop_instant_preview' => 1,
-        'manualcrop_keyboard' => TRUE,
-        'manualcrop_maximize_default_crop_area' => FALSE,
+        'manualcrop_instant_preview' => 0,
+        'manualcrop_keyboard' => 1,
+        'manualcrop_maximize_default_crop_area' => 1,
         'manualcrop_require_cropping' => array(
           'osu_crop_4x3' => 'osu_crop_4x3',
         ),
