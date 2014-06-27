@@ -215,7 +215,7 @@ function osu_widgets_field_default_field_instances() {
       'file_extensions' => 'png gif jpg jpeg',
       'max_filesize' => '',
       'max_resolution' => '1200x1200',
-      'min_resolution' => '640x480',
+      'min_resolution' => '',
       'title_field' => 1,
       'user_register_form' => FALSE,
     ),
