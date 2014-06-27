@@ -33,7 +33,7 @@
       $('.bxspotlight', context).once('bxspotlight', function () {
         $(this).bxSlider({
           auto: true,
-          controls: false,
+          controls: true,
           mode: 'fade',
           pause: 7000,
           captions: true,
