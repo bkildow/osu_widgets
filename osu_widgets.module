@@ -294,6 +294,33 @@ function osu_widgets_get_callout_link($link, $icon) {
 }
 
 /**
+ * Implements hook_entity_view().
+ *
+ * Sets up the carousel wrapper class based on the settings
+ * (full_width or inline).
+ */
+function osu_widgets_entity_view($entity, $type, $view_mode, $langcode) {
+
+  if ($entity->bundle == 'osu_carousel') {
+
+    // Get the value of the display setting field.
+    $wrapper = entity_metadata_wrapper($type, $entity);
+    $display_setting = $wrapper->field_osu_carousel_display->value();
+
+    if ($display_setting == 'inline') {
+      $class = 'carousel-inline-widget';
+    }
+    else {
+      $class = 'carousel-widget';
+    }
+
+    // Create a wrapper with the correct carousel class.
+    $entity->content['#prefix'] = '<div class="' . $class . '">';
+    $entity->content['#suffix'] = '</div>';
+  }
+}
+
+/**
  * Theme function to output the carousel.
  *
  * This specifically themes a field collection with the fields
@@ -303,8 +330,7 @@ function theme_ds_field_carousel($variables) {
 
   libraries_load('bxslider');
 
-  $output = '<div class="carousel-widget">';
-  $output .= '<ul class="bxcarousel">';
+  $output = '<ul class="bxcarousel">';
 
   // Render the items.
   foreach ($variables['items'] as $delta => $item) {
@@ -329,7 +355,6 @@ function theme_ds_field_carousel($variables) {
   }
 
   $output .= '</ul>';
-  $output .= '</div>';
   return $output;
 }
 
@@ -357,8 +382,8 @@ function osu_widgets_register($widget) {
 
 }
 
-/*
- *  Return list of registere OSU widgets
+/**
+ *  Return list of registered OSU widgets.
  */
 function osu_widgets_list() {
   $widgets = & drupal_static('osu_widgets_widget_list', array());
