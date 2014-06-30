@@ -120,6 +120,32 @@ function osu_widgets_field_default_field_bases() {
     'type' => 'link_field',
   );
 
+  // Exported field_base: 'field_osu_carousel_display'
+  $field_bases['field_osu_carousel_display'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_osu_carousel_display',
+    'foreign keys' => array(),
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'full_width' => 'Full Width',
+        'inline' => 'Inline',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
   // Exported field_base: 'field_osu_carousel_image'
   $field_bases['field_osu_carousel_image'] = array(
     'active' => 1,

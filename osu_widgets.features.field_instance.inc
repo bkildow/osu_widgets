@@ -296,6 +296,41 @@ function osu_widgets_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'fieldable_panels_pane-osu_carousel-field_osu_carousel_display'
+  $field_instances['fieldable_panels_pane-osu_carousel-field_osu_carousel_display'] = array(
+    'bundle' => 'osu_carousel',
+    'default_value' => array(
+      0 => array(
+        'value' => 'full_width',
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'fieldable_panels_pane',
+    'field_name' => 'field_osu_carousel_display',
+    'label' => 'Carousel Display',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 1,
+    ),
+  );
+
   // Exported field_instance: 'fieldable_panels_pane-osu_carousel-field_osu_carousel_images'
   $field_instances['fieldable_panels_pane-osu_carousel-field_osu_carousel_images'] = array(
     'bundle' => 'osu_carousel',
@@ -335,7 +370,7 @@ function osu_widgets_field_default_field_instances() {
       'module' => 'field_collection',
       'settings' => array(),
       'type' => 'field_collection_embed',
-      'weight' => -4,
+      'weight' => 2,
     ),
   );
 
@@ -588,6 +623,7 @@ function osu_widgets_field_default_field_instances() {
   t('Callout Icon 2');
   t('Callout Link 1');
   t('Callout Link 2');
+  t('Carousel Display');
   t('Carousel Image');
   t('Carousel Images');
   t('Image');
