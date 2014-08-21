@@ -301,7 +301,7 @@ function osu_widgets_get_callout_link($link, $icon) {
  */
 function osu_widgets_entity_view($entity, $type, $view_mode, $langcode) {
 
-  if ($entity->bundle == 'osu_carousel') {
+  if (isset($entity->bundle) && $entity->bundle == 'osu_carousel') {
 
     // Get the value of the display setting field.
     $wrapper = entity_metadata_wrapper($type, $entity);
@@ -371,7 +371,7 @@ function osu_widgets_hook_register_osu_widgets() {
 }
 
 /**
- * Helper function that stores widget name in static cache
+ * Helper function that stores widget name in static cache.
  */
 function osu_widgets_register($widget) {
   $widget = check_plain($widget);
@@ -383,7 +383,7 @@ function osu_widgets_register($widget) {
 }
 
 /**
- *  Return list of registered OSU widgets.
+ * Return list of registered OSU widgets.
  */
 function osu_widgets_list() {
   $widgets = & drupal_static('osu_widgets_widget_list', array());
@@ -393,6 +393,7 @@ function osu_widgets_list() {
 
 /**
  * Implements hook_preprocess_panels_pane().
+ *
  * In order to add 'osu-widget' class as necessary.
  */
 function osu_widgets_preprocess_panels_pane(&$vars) {
