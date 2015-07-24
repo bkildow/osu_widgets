@@ -279,14 +279,10 @@ function osu_widgets_get_callout_link($link, $icon) {
   $url = isset($link[LANGUAGE_NONE][0]['url']) ? $link[LANGUAGE_NONE][0]['url'] : '';
   $title = isset($link[LANGUAGE_NONE][0]['title']) ? $link[LANGUAGE_NONE][0]['title'] : '';
   $icon_class = isset($icon[LANGUAGE_NONE][0]['value']) ? $icon[LANGUAGE_NONE][0]['value'] : '';
-
-  $options = array();
+  $options = isset($link[LANGUAGE_NONE][0]) ? $link[LANGUAGE_NONE][0] : array();
 
   if (!empty($icon_class)) {
-    $options = array(
-      'html' => TRUE,
-    );
-
+    $options['html'] = TRUE;
     $title = '<i class="' . $icon_class . '"></i> ' . $title;
   }
 
